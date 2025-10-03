@@ -3,9 +3,9 @@ using StreamWriter = System.IO.StreamWriter;
 
 namespace XperienceCommunity.Essentials.Helpers;
 
-public static class AesEncryptionHelper
+public static class EncryptionHelper
 {
-    public static string Encrypt(string plainText)
+    public static string EncryptAes(string plainText)
     {
         if (string.IsNullOrEmpty(plainText))
         {
@@ -43,7 +43,7 @@ public static class AesEncryptionHelper
         return Convert.ToBase64String(msEncrypt.ToArray());
     }
 
-    public static string Decrypt(string cipherText)
+    public static string DecryptAes(string cipherText)
     {
         if (string.IsNullOrEmpty(cipherText))
         {

@@ -40,7 +40,7 @@ The package supports optional configuration for certain features. Add the follow
 ```json
 {
   "XperienceCommunityEssentials": {
-    "AesSecureKey": "AdITa+arl6wVzSb6lU8cUZ91MI9Y9ZoKHWfWt78uOI6CJw0jTF72cc+/sQzrssoL"
+    "AesSecureKey": ""
   }
 }
 ```
@@ -57,8 +57,8 @@ The package supports optional configuration for certain features. Add the follow
 
 **Secure encryption and decryption**: Provides AES encryption capabilities with configurable keys for securing sensitive data.
 
-- `Encrypt(string plainText)` - Encrypts plain text using AES with CBC mode
-- `Decrypt(string cipherText)` - Decrypts AES encrypted text back to plain text
+- `EncryptAes(string plainText)` - Encrypts plain text using AES with CBC mode
+- `DecryptAes(string cipherText)` - Decrypts AES encrypted text back to plain text
 - `GetMd5Hash(string input)` - Generates MD5 hash of input string
 
 **Configuration Required**: You must set the `AesSecureKey` in your `appsettings.json` to use this helper.
@@ -109,14 +109,14 @@ The package supports optional configuration for certain features. Add the follow
 
 ## 📋 Usage Examples
 
-### AES Encryption
+### Encryption
 
 ```csharp
 // Encrypt sensitive data
-string encrypted = AesEncryptionHelper.Encrypt("sensitive information");
+string encrypted = EncryptionHelper.EncryptAes("sensitive information");
 
 // Decrypt data
-string decrypted = AesEncryptionHelper.Decrypt(encrypted);
+string decrypted = EncryptionHelper.DecryptAes(encrypted);
 
 // Generate hash
 string hash = AesEncryptionHelper.GetMd5Hash("password");
@@ -145,7 +145,12 @@ string encoded = text.EncodeToBase64();
 bool hasMatch = sourceList.ContainsAny(targetList);
 
 // Safe property access
-string name = users.GetFirstOrDefault(u => u.Name, "Unknown");
+var identifier = assetCollection.GetFirstOrEmpty(a => a.Identifier);
+var url = assetCollection.GetFirstOrEmpty(a => a.AssetFile.Url);
+var name = assetCollection.GetFirstOrEmpty(a => a.AssetFile.Metadata.Name);
+
+var count = assetCollection.GetFirstOrDefault(a => a.SomeIntProperty, 0);
+var date = assetCollection.GetFirstOrDefault(a => a.SomeDateTime, DateTime.MinValue);
 ```
 
 ### URL Helpers

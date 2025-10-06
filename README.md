@@ -100,6 +100,37 @@ The package supports optional configuration for certain features. Add the follow
 - `AbsoluteURL(HttpRequest currentRequest)` - Converts relative URLs to absolute URLs
 - String extension for relative URL to absolute URL conversion
 
+### Enum Dropdown Options Provider
+
+**Enum-based dropdown data provider**: Generic provider for populating dropdown components with enum values in the Xperience admin interface.
+
+- `EnumDropDownOptionsProvider<T>` - Generic provider that converts enum values to dropdown options
+- `Parse(string rawValue, T defaultValue)` - Static helper method to parse stored string values back to enum type with fallback
+
+**Usage Example**:
+
+```csharp
+// Define your enum
+public enum GridLayoutOptions
+{
+    [Description("1 Column")]
+    OneColumn = 1,
+    
+    [Description("2 Columns")]
+    TwoColumns = 2,
+    
+    [Description("3 Columns")]
+    ThreeColumns = 3
+}
+
+// Use in a page builder or form component property
+[DropDownComponent(
+    Label = "# of columns",
+    DataProviderType = typeof(EnumDropDownOptionsProvider<GridLayoutOptions>),
+    Order = 1)]
+public string Columns { get; set; } = GridLayoutOptions.TwoColumns.ToString();
+```
+
 ### Configuration Helper
 
 **Centralized configuration access**: Provides global access to application configuration.

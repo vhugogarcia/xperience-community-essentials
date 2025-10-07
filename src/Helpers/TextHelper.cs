@@ -231,4 +231,58 @@ public static class TextHelper
         // Remove all non-digit characters using regex
         return Regex.Replace(phoneNumber, @"[^\d]", "");
     }
+
+    /// <summary>
+    /// Converts a phone number containing letters to a numeric-only format.
+    /// Letters are converted based on standard phone keypad mapping (A-C=2, D-F=3, etc.)
+    /// Non-alphanumeric characters (like dashes and spaces) are preserved.
+    /// </summary>
+    /// <param name="phoneNumber">Phone number that may contain letters (e.g., "800-123-TEXT")</param>
+    /// <returns>Phone number with letters converted to numbers (e.g., "800-123-1234")</returns>
+    public static string PhoneNumberLettersToNumbers(string phoneNumber)
+    {
+        if (string.IsNullOrEmpty(phoneNumber))
+        {
+            return phoneNumber;
+        }
+
+        var result = new StringBuilder(phoneNumber.Length);
+
+        foreach (char c in phoneNumber)
+        {
+            if (char.IsLetter(c))
+            {
+                result.Append(LetterToNumber(c));
+            }
+            else
+            {
+                result.Append(c);
+            }
+        }
+
+        return result.ToString();
+    }
+
+    /// <summary>
+    /// Converts a single letter to its corresponding phone keypad number.
+    /// </summary>
+    /// <param name="letter">Letter to convert (case-insensitive)</param>
+    /// <returns>Corresponding digit as a character</returns>
+    private static char LetterToNumber(char letter)
+    {
+        char upper = char.ToUpper(letter);
+
+        return upper switch
+        {
+            'A' or 'B' or 'C' => '2',
+            'D' or 'E' or 'F' => '3',
+            'G' or 'H' or 'I' => '4',
+            'J' or 'K' or 'L' => '5',
+            'M' or 'N' or 'O' => '6',
+            'P' or 'Q' or 'R' or 'S' => '7',
+            'T' or 'U' or 'V' => '8',
+            'W' or 'X' or 'Y' or 'Z' => '9',
+            _ => letter // Return original character if not a standard letter
+        };
+    }
 }

@@ -167,6 +167,9 @@ string id = someNumber.GenerateId(12);
 
 // Encode to Base64
 string encoded = text.EncodeToBase64();
+
+// Convert letters to numbers on phone numbers
+string converted = TextHelper.PhoneNumberLettersToNumbers("800-123-TEXT");
 ```
 
 ### Collection Operations

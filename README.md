@@ -10,9 +10,10 @@ This package provides a comprehensive collection of common helpers, utilities, a
 
 | Xperience Version | Library Version |
 |-------------------|-----------------|
+| >= 31.5.3         | >= 1.4.0        |
 | >= 30.6.0         | >= 1.0.0        |
 
-> **Note:** The latest version that has been tested is 30.6.0
+> **Note:** The latest version that has been tested is 31.5.3
 
 ## ⚙️ Package Installation
 

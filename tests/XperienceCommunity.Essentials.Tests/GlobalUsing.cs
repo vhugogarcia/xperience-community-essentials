@@ -1,0 +1,9 @@
+global using Xunit;
+global using NSubstitute;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.AspNetCore.Mvc.Localization;
+global using Microsoft.AspNetCore.Html;
+global using Microsoft.Extensions.Configuration;
+global using XperienceCommunity.Essentials.Extensions;
+global using XperienceCommunity.Essentials.Helpers;
+global using XperienceCommunity.Essentials.Tests.Models;

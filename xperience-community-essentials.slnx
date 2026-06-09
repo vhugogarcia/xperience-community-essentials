@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/XperienceCommunity.Essentials.csproj" />
+  <Project Path="tests/XperienceCommunity.Essentials.Tests/XperienceCommunity.Essentials.Tests.csproj" />
+</Solution>
